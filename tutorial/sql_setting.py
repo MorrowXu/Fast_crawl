@@ -36,6 +36,33 @@ class Sql(object):
         finally:
             self.db.close()
 
+
+    def bolesql_cennector(self, data):
+        # 连接mysql数据库
+        # sql = '''INSERT INTO new_baike_key(key_word, content, url) VALUES("%s","%s", "%s")''' \
+        #       % (
+        #       data['title'].strip(), data['para'].strip().replace('"', "'"), data['url'])  # replace""防止sql语法报错
+        # print sql
+        sql = '''INSERT INTO jobbole(title, content, create_time, url) VALUES("%s", "%s", "%s", "%s")'''\
+                % (data['title'].strip(), data['content'].replace('"', "'"), data['create_time'], data['url'])
+        try:
+            # 执行sql语句
+            self.cursor.execute(sql)
+            # 提交到数据库执行
+            self.db.commit()
+            # print('Query OK!')
+        except Exception as e:
+            # 发生错误时回滚,打印错误日志
+            t = time.strftime('%Y_%m_%d')
+            with open('%s_jobbole_log.txt' % t, 'a+') as f:  # 'a+' 为追加模式
+                f.write(time.ctime() + ' >>> ' + 'failed' + '\t' + data['url'] + '\t' + str(e))
+                f.write('\n\n\n')
+            print('Query failed: %s' % e)
+            self.db.rollback()
+        finally:
+            self.db.close()
+
+
     # def log_connector(self, log_dict):
     #     sql = '''INSERT INTO log(log_time, log_status, url) VALUES("%s", "%d", "%s")''' \
     #           % (log_dict['log_time'], 1, log_dict['url']) # 抓取成功则执行此语句

@@ -15,3 +15,9 @@ class TutorialItem(scrapy.Item):
     title = scrapy.Field()
     para = scrapy.Field()
     pass
+
+class JobboleItem(scrapy.Item):
+    page_url = scrapy.Field()
+    page_title = scrapy.Field()
+    page_content = scrapy.Field()
+    page_create_time = scrapy.Field()
