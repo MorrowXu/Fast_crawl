@@ -29,7 +29,7 @@ class BaikeKeySpider(scrapy.Spider):
             yield Request(next_url)
 
         title = response.xpath('//dd[@class="lemmaWgt-lemmaTitle-title"]/h1/text()').extract_first('error')
-        para_lst = response.xpath('//div[@class="lemma-summary"]/div[@class="para"]/text()').extract()
+        para_lst = response.xpath('//div[@class="lemma-summary"]/div[@class="para"]//text()').extract()
         para = ''
         for i in para_lst:para += i;
 
