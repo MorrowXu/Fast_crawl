@@ -28,8 +28,10 @@ class BaikeKeySpider(scrapy.Spider):
             next_url = urlparse.urljoin(page_url, link)
             yield Request(next_url)
 
-        title = response.xpath('//dd[@class="lemmaWgt-lemmaTitle-title"]/h1/text()').extract_first('error')
-        para_lst = response.xpath('//div[@class="lemma-summary"]/div[@class="para"]//text()').extract()
+        # title = response.xpath('//dd[@class="lemmaWgt-lemmaTitle-title"]/h1/text()').extract_first('error')
+        title = response.css('div .lemmaWgt-lemmaTitle-title h1::text').extract_first('error: not found')
+        # para_lst = response.xpath('//div[@class="lemma-summary"]/div[@class="para"]//text()').extract()
+        para_lst = response.css('div .lemma-summary div.para ::text').extract()
         para = ''
         for i in para_lst:para += i;
 
