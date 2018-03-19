@@ -14,6 +14,6 @@ import os
 
 print os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-execute(['scrapy','crawl','baike_key','-s','CLOSESPIDER_TIMEOUT=18000'])
+execute(['scrapy','crawl','baike_key','-s','CLOSESPIDER_TIMEOUT=3600'])
 
 # -s CLOSESPIDER_TIMEOUT=18000  设置5小时后关闭爬虫
