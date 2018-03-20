@@ -38,8 +38,8 @@ class JobboleSpider(scrapy.Spider):
         content = ''
         for i in main_tags: content += i;
         create_time = response.css('.entry-meta p::text').extract_first('error').strip()[:-1].strip() # 创始时间
-        content = content.replace('"', "'")
-        content = remove_emoji(content)
+        content = content.replace('"', "'").decode('utf-8')
+        content = remove_emoji(content).encode('utf-8')
 
         items['page_url'] = response.url
         items['page_title'] = title
