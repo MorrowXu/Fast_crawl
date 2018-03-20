@@ -22,12 +22,12 @@ class JobboleSpider(scrapy.Spider):
         links = response.css('a.archive-title')
         for link in links: # 拿到所有文章url
             link = link.css('::attr(href)').extract_first('error')
-            # print urlparse.urljoin(response.url, link)
+            print 'crawl: ' + urlparse.urljoin(response.url, link)
             yield Request(url=urlparse.urljoin(response.url, link), callback=self.parse_content)
 
         next_url = response.css('.next.page-numbers::attr(href)').extract_first() # 下一页
         if next_url:
-            print urlparse.urljoin(response.url, next_url)
+            print 'crawl: ' + urlparse.urljoin(response.url, next_url)
             yield Request(url=urlparse.urljoin(response.url, next_url), callback=self.parse)
 
 
