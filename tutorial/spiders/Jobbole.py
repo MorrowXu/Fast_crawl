@@ -25,7 +25,7 @@ class JobboleSpider(scrapy.Spider):
             # print urlparse.urljoin(response.url, link)
             yield Request(url=urlparse.urljoin(response.url, link), callback=self.parse_content)
 
-        next_url = response.css('.page-numbers::attr(href)').extract_first()
+        next_url = response.css('.next.page-numbers::attr(href)').extract_first() # 下一页
         if next_url:
             print urlparse.urljoin(response.url, next_url)
             yield Request(url=urlparse.urljoin(response.url, next_url), callback=self.parse)
