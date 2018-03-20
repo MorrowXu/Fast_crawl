@@ -60,6 +60,7 @@ class Sql(object):
             print('Query failed: %s' % e)
             self.db.rollback()
         finally:
+            self.cursor.close()
             self.db.close()
 
 

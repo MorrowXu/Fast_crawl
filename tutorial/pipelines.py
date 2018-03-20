@@ -5,6 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from tutorial import sql_setting
+from tutorial.mysql_orm import add_data # 调用orm映射
 
 class TutorialPipeline(object):
 
@@ -18,11 +19,10 @@ class TutorialPipeline(object):
             sql.sql_cennector(data)
 
         else:
-            sql = sql_setting.Sql()
             data['url'] = item['page_url']
             data['title'] = item['page_title']
             data['content'] = item['page_content']
             data['create_time'] = item['page_create_time']
-            sql.bolesql_cennector(data)
+            add_data(data)
 
         return item
