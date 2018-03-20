@@ -43,8 +43,8 @@ class Sql(object):
         #       % (
         #       data['title'].strip(), data['para'].strip().replace('"', "'"), data['url'])  # replace""防止sql语法报错
         # print sql
-        sql = '''INSERT INTO jobbole(title, content, create_time, url) VALUES("%s", "%s", "%s", "%s")'''\
-                % (data['title'].strip(), data['content'].replace('"', "'"), data['create_time'], data['url'])
+        sql = """INSERT INTO jobbole(title, content, create_time, url) VALUES("%s", "%s", "%s", "%s")"""\
+                % (data['title'].strip(), data['content'].replace('"', "'").strip('\r\n '), data['create_time'], data['url'])
         try:
             # 执行sql语句
             self.cursor.execute(sql)
