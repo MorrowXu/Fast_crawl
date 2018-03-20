@@ -14,6 +14,11 @@ BOT_NAME = 'tutorial'
 SPIDER_MODULES = ['tutorial.spiders']
 NEWSPIDER_MODULE = 'tutorial.spiders'
 
+# LOG_LEVEL = 'CRITICAL'
+LOG_LEVEL = 'ERROR' # 显示错误信息以及以上
+# LOG_LEVEL = 'WARNING' # 显示警告信息以及以上
+# LOG_LEVEL = 'DEBUG' # 显示DEBUG以及以上
+# LOG_LEVEL = 'INFO' # 全部信息
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
