@@ -22,6 +22,7 @@ class Webcrawler_jobbole(Base):
     url = Column(VARCHAR)
 
 class Webcrawler_baike(Base):
+
     __tablename__ = 'new_baike_key'
 
     id = Column(Integer, primary_key=True)
@@ -30,7 +31,6 @@ class Webcrawler_baike(Base):
     url = Column(VARCHAR)
 
 class add_data(object):
-
 
     def __init__(self):
         engine = create_engine('mysql+pymysql://root:930502@localhost:3306/webcrawler?charset=utf8')
